@@ -3,6 +3,7 @@ import { MantineProvider } from '@mantine/core';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import About from './About';
 import Home from './Home';
+import NotFound from './NotFound';
 import { theme } from './theme';
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </MantineProvider>
