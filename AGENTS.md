@@ -1,21 +1,107 @@
-# 必ず守ること
+# 1. 全体方針・コミュニケーション
 
-- 思考は英語で、コード内のコメントや回答など、最終出力のみ日本語でお願いします。
-- コードコメントは日本語で 既存のコードコメントは指示がない限り変えないこと
-- 可能な限りReact純正のhookよりmantine hookを利用すること
-- 型定義はinterfaceではなくtypeを使用すること
-- src/scripts以下のTypyscriptコード実行する場合は `node --import tsx ./src/scripts/hello.ts` とすること 特に指示がなければ許可なく自動実行して良い。
+- ユーザーは日本人です。コード内コメント・最終出力メッセージ・ユーザーへの質問は日本語でお願いします。
+- 既存のコードコメントは、明示的な指示がない限り変更しない。
+- `npm run build` は実行しない。
+- `src/scripts` 以下の TypeScript コードを実行するときは `node --import tsx ./src/scripts/hello.ts`
 
-# ライブラリ概要
+ライブラリ概要
 
 - 言語: TypeScript
-- UI: React v19 Mantine v8
-- hook: mantine hook
-- lint: biome
+- フレームワーク: Vite、react-router-dom
+- UI: React v19 / Mantine v8 https://deepwiki.com/mantinedev/mantine
+- Lint: biome v2
 
-# Mantineの色一覧
+# 2. TypeScript / コーディングスタイル
 
+- 型定義は `interface` ではなく 必ず `type` を使う。
+- `any` 型は 絶対に使用しない。
+- 型アサーション `as` は原則使用しない。やむを得ず `as` を使う場合は、なぜ必要かをコードコメントで説明すること。
+- `class` 構文は 一切使用しない。
+- 関数定義は すべてアロー関数 を使用する。
+- 条件分岐は 早期リターンを用いてフラットに保つ。
+- `try-catch` は乱用せず、必要最低限のみ使用する。
+
+# 3. Mantine / スタイリング関連ルール
+
+- 可能な限り、Mantine が提供する hook を優先的に利用する。
+- `tsx` でスタイルを指定する際は、まず Mantine の Style props を使う。
+  - Style props で表現できない場合のみ、`style` プロパティを使う。
+- 例：
+
+```tsx
+// Style props を使う例
+<Box mx="auto" maw={400} c="blue.6" bg="#fff">
+</Box>
+
+// Style props になく whiteSpace を指定したい場合は style を使う
+<Text style={{ whiteSpace: 'nowrap' }}>
+</Text>
 ```
+
+- Radius、borderRadius などの丸みは、特別な指示がない限り設定しない。
+- Mantine の Style props（`mb`, `py`, `fz` など）でサイズ指定をする場合は、可能な限り `xs`, `sm`, `md`, `lg`, `xl` のプリセットサイズを使う。例：`<Text size="sm">`
+- 縦方向に要素が連続する場合、個々に `mb` を多用せず、基本的に `<Stack>` を使って縦間隔を調整する。
+- 文字の太さ（`fw`）は `"bold"` のみ使用可能。数値（`400`, `700` など）は使用しない。
+
+# 4. Mantine で使用可能な Style props 一覧
+
+All Mantine components that have root element support the following style props:
+
+| Prop    | CSS Property         | Theme key         |
+| ------- | -------------------- | ----------------- |
+| m       | margin               | theme.spacing     |
+| mt      | marginTop            | theme.spacing     |
+| mb      | marginBottom         | theme.spacing     |
+| ml      | marginLeft           | theme.spacing     |
+| mr      | marginRight          | theme.spacing     |
+| ms      | marginInlineStart    | theme.spacing     |
+| me      | marginInlineEnd      | theme.spacing     |
+| mx      | marginInline         | theme.spacing     |
+| my      | marginBlock          | theme.spacing     |
+| p       | padding              | theme.spacing     |
+| pt      | paddingTop           | theme.spacing     |
+| pb      | paddingBottom        | theme.spacing     |
+| pl      | paddingLeft          | theme.spacing     |
+| pr      | paddingRight         | theme.spacing     |
+| ps      | paddingInlineStart   | theme.spacing     |
+| pe      | paddingInlineEnd     | theme.spacing     |
+| px      | paddingInline        | theme.spacing     |
+| py      | paddingBlock         | theme.spacing     |
+| bd      | border               | –                 |
+| bg      | background           | theme.colors      |
+| c       | color                | –                 |
+| opacity | opacity              | –                 |
+| ff      | fontFamily           | –                 |
+| fz      | fontSize             | theme.fontSizes   |
+| fw      | fontWeight           | –                 |
+| lts     | letterSpacing        | –                 |
+| ta      | textAlign            | –                 |
+| lh      | lineHeight           | theme.lineHeights |
+| fs      | fontStyle            | –                 |
+| tt      | textTransform        | –                 |
+| td      | textDecoration       | –                 |
+| w       | width                | theme.spacing     |
+| miw     | minWidth             | theme.spacing     |
+| maw     | maxWidth             | theme.spacing     |
+| h       | height               | theme.spacing     |
+| mih     | minHeight            | theme.spacing     |
+| mah     | maxHeight            | theme.spacing     |
+| bgsz    | backgroundSize       | –                 |
+| bgp     | backgroundPosition   | –                 |
+| bgr     | backgroundRepeat     | –                 |
+| bga     | backgroundAttachment | –                 |
+| pos     | position             | –                 |
+| top     | top                  | –                 |
+| left    | left                 | –                 |
+| bottom  | bottom               | –                 |
+| right   | right                | –                 |
+| inset   | inset                | –                 |
+| display | display              | –                 |
+| flex    | flex                 | –                 |
+
+# 5. Mantineの色一覧
+
 dark.0: #C9C9C9
 dark.1: #b8b8b8
 dark.2: #828282
@@ -156,151 +242,3 @@ orange.6: #fd7e14
 orange.7: #f76707
 orange.8: #e8590c
 orange.9: #d9480f
-```
-
-# Mantineで使用可能なStyle props
-
-All Mantine components that have root element support the following style props:
-
-| Prop    | CSS Property         | Theme key         | 
-| ------- | -------------------- | ----------------- | 
-| m       | margin               | theme.spacing     | 
-| mt      | marginTop            | theme.spacing     | 
-| mb      | marginBottom         | theme.spacing     | 
-| ml      | marginLeft           | theme.spacing     | 
-| mr      | marginRight          | theme.spacing     | 
-| ms      | marginInlineStart    | theme.spacing     | 
-| me      | marginInlineEnd      | theme.spacing     | 
-| mx      | marginInline         | theme.spacing     | 
-| my      | marginBlock          | theme.spacing     | 
-| p       | padding              | theme.spacing     | 
-| pt      | paddingTop           | theme.spacing     | 
-| pb      | paddingBottom        | theme.spacing     | 
-| pl      | paddingLeft          | theme.spacing     | 
-| pr      | paddingRight         | theme.spacing     | 
-| ps      | paddingInlineStart   | theme.spacing     | 
-| pe      | paddingInlineEnd     | theme.spacing     | 
-| px      | paddingInline        | theme.spacing     | 
-| py      | paddingBlock         | theme.spacing     | 
-| bd      | border               | –                | 
-| bg      | background           | theme.colors      | 
-| c       | color                | –                | 
-| opacity | opacity              | –                | 
-| ff      | fontFamily           | –                | 
-| fz      | fontSize             | theme.fontSizes   | 
-| fw      | fontWeight           | –                | 
-| lts     | letterSpacing        | –                | 
-| ta      | textAlign            | –                | 
-| lh      | lineHeight           | theme.lineHeights | 
-| fs      | fontStyle            | –                | 
-| tt      | textTransform        | –                | 
-| td      | textDecoration       | –                | 
-| w       | width                | theme.spacing     | 
-| miw     | minWidth             | theme.spacing     | 
-| maw     | maxWidth             | theme.spacing     | 
-| h       | height               | theme.spacing     | 
-| mih     | minHeight            | theme.spacing     | 
-| mah     | maxHeight            | theme.spacing     | 
-| bgsz    | backgroundSize       | –                | 
-| bgp     | backgroundPosition   | –                | 
-| bgr     | backgroundRepeat     | –                | 
-| bga     | backgroundAttachment | –                | 
-| pos     | position             | –                | 
-| top     | top                  | –                | 
-| left    | left                 | –                | 
-| bottom  | bottom               | –                | 
-| right   | right                | –                | 
-| inset   | inset                | –                | 
-| display | display              | –                | 
-| flex    | flex                 | –                | 
-
-# Mantineサンプルフォーム
-
-```tsx
-// https://mantine.dev/form/validators/
-// https://mantine.dev/form/create-form-context/
-
-import { Button, Group, NumberInput, TextInput } from '@mantine/core';
-import { hasLength, isEmail, isInRange, isNotEmpty, matches } from '@mantine/form';
-import { createFormContext } from '@mantine/form';
-
-// Definition of form values is required
-type formProps = {
-  name: string;
-  job: string;
-  email: string;
-  favoriteColor: string;
-  age: number;
-};
-
-// createFormContext returns a tuple with 3 items:
-// FormProvider is a component that sets form context
-// useFormContext hook return form object that was previously set in FormProvider
-// useForm hook works the same way as useForm exported from the package but has predefined type
-const [FormProvider, useFormContext, useForm] = createFormContext<formProps>();
-
-function NameField() {
-  const form = useFormContext();
-  return <TextInput label='Name' placeholder='Name' withAsterisk {...form.getInputProps('name')} />;
-}
-
-export function SampleForm() {
-  // Create form as described in use-form documentation
-  const form = useForm({
-    mode: 'controlled',
-    initialValues: {
-      name: '',
-      job: '',
-      email: '',
-      favoriteColor: '',
-      age: 18
-    },
-
-    validate: {
-      name: hasLength({ min: 2, max: 10 }, '名前は2〜10文字で入力してください'),
-      job: isNotEmpty('現在の職業を入力してください'),
-      email: isEmail('有効なメールアドレスを入力してください'),
-      favoriteColor: matches(/^#([0-9a-f]{3}){1,2}$/, '有効な16進数カラーコードを入力してください'),
-      age: isInRange({ min: 18, max: 99 }, '登録するには18〜99歳である必要があります')
-    }
-  });
-
-  function handleSubmit(): void {
-    console.log(form.values.name);
-  }
-
-  return (
-    // Wrap your form with FormProvider
-    <FormProvider form={form}>
-      <form
-        onSubmit={form.onSubmit(() => {
-          handleSubmit();
-        })}
-      >
-        <NameField />
-        <TextInput label='職業' placeholder='あなたの職業' withAsterisk mt='md' {...form.getInputProps('job')} />
-        <TextInput
-          label='メールアドレス'
-          placeholder='あなたのメールアドレス'
-          withAsterisk
-          mt='md'
-          {...form.getInputProps('email')}
-        />
-        <TextInput
-          label='好きな色'
-          placeholder='あなたの好きな色'
-          withAsterisk
-          mt='md'
-          {...form.getInputProps('favoriteColor')}
-        />
-        <NumberInput label='年齢' placeholder='あなたの年齢' withAsterisk mt='md' {...form.getInputProps('age')} />
-
-        <Group justify='flex-end' mt='md'>
-          <Button type='submit'>送信</Button>
-          <Button onClick={() => form.reset()}>Reset to initial values</Button>
-        </Group>
-      </form>
-    </FormProvider>
-  );
-}
-```
