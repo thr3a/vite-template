@@ -2,15 +2,18 @@
 
 - ユーザーは日本人です。コード内コメント・最終出力メッセージ・ユーザーへの質問は日本語でお願いします。
 - 既存のコードコメントは、明示的な指示がない限り変更しない。
-- `npm run build` は実行しない。
 - `src/scripts` 以下の TypeScript コードを実行するときは `node --import tsx ./src/scripts/hello.ts`
+- 指示されるまではAIのモデル名(gpt-4oなど)は勝手に変更しないこと
+- https://deepwiki.com/mantinedev/mantine
 
 ライブラリ概要
 
 - 言語: TypeScript
-- フレームワーク: Vite、react-router-dom
-- UI: React v19 / Mantine v8 https://deepwiki.com/mantinedev/mantine
+- UI: React v19 / Mantine v9
+- hook: Mantine の hook を使用
 - Lint: biome v2
+- ルーティング: react-router-dom（`BrowserRouter` + `Routes` + `Route`）を使用。ルート定義は `src/App.tsx`
+- ビルドはvite v8
 
 # 2. TypeScript / コーディングスタイル
 
