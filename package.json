@@ -6,33 +6,33 @@
   "scripts": {
     "dev": "vite --host",
     "build": "tsc && vite build",
-    "lint": "biome check --write ./src",
+    "lint": "biome check --write --unsafe ./src && npx tsc --noEmit",
     "preview": "vite preview",
-    "serve": "python -m http.server -d dist",
-    "llmtext": "docker run --rm -v ./:/app thr3a/repo2text -d /app -f package.json vite.config.ts"
+    "serve": "python -m http.server -d dist"
   },
   "dependencies": {
-    "@mantine/core": "8.3.15",
-    "@mantine/form": "^8.3.15",
-    "@mantine/hooks": "8.3.15",
-    "@mantine/vanilla-extract": "8.3.15",
-    "@tabler/icons-react": "^3.37.1",
-    "@vanilla-extract/css": "^1.18.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-router-dom": "^7.13.0",
+    "@mantine/core": "9.0.1",
+    "@mantine/form": "^9.0.1",
+    "@mantine/hooks": "9.0.1",
+    "@mantine/vanilla-extract": "9.0.1",
+    "@tabler/icons-react": "^3.41.1",
+    "@vanilla-extract/css": "^1.20.1",
+    "ai-text-cleaner": "^0.1.1",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-router-dom": "^7.14.0",
     "tsx": "^4.21.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.4",
+    "@biomejs/biome": "^2.4.11",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@vanilla-extract/vite-plugin": "^5.1.4",
-    "@vitejs/plugin-react": "^5.1.4",
-    "postcss": "^8.5.6",
+    "@vanilla-extract/vite-plugin": "^5.2.2",
+    "@vitejs/plugin-react": "^6.0.1",
+    "postcss": "^8.5.9",
     "postcss-preset-mantine": "1.18.0",
     "postcss-simple-vars": "^7.0.1",
-    "typescript": "^5.9.3",
-    "vite": "^7.3.1"
+    "typescript": "^6.0.2",
+    "vite": "^8.0.8"
   }
 }
