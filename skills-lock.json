@@ -5,19 +5,25 @@
       "source": "thr3a/Skills",
       "sourceType": "github",
       "skillPath": "skills/feature-clarify/SKILL.md",
-      "computedHash": "c3dbcc2469810b86d774880fbeeb16a4626a2894c517e5e5f3f6f08519919d8c"
+      "computedHash": "7bfb456d0fc2a189958405d56ee1cd65a0a8023472bcb4497859224831401dac"
+    },
+    "git-commit-split": {
+      "source": "thr3a/Skills",
+      "sourceType": "github",
+      "skillPath": "skills/git-commit-split/SKILL.md",
+      "computedHash": "f101f23f538ac4eeb4061736c72bd35f2ed2c04c2c474fe8a4d0df316ea0dc7d"
     },
     "mantine-colors": {
       "source": "thr3a/Skills",
       "sourceType": "github",
       "skillPath": "skills/mantine-colors/SKILL.md",
-      "computedHash": "34c541bbdecbece8e1aa5a4241718277fe8fc4ae20a25af37d14a2ab453378e1"
+      "computedHash": "70561795fa70802ba303da1400b44a29f214a0faf2439fbf986195989e5b7084"
     },
     "mantine-style-props": {
       "source": "thr3a/Skills",
       "sourceType": "github",
       "skillPath": "skills/mantine-style-props/SKILL.md",
-      "computedHash": "653ec34fb6c5d92f990d4b0e192159f8c176b0b455745154773963768ef0472e"
+      "computedHash": "d66797677bc5eca9e19123deb058dbf5e00b469afa1752e45d9dcfb56c6e4c50"
     },
     "playwright-cli": {
       "source": "microsoft/playwright-cli",
