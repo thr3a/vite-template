@@ -1,9 +1,9 @@
 import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import About from './About';
-import Home from './Home';
-import NotFound from './NotFound';
+import About from './pages/About';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
 import { theme } from './theme';
 
 export default function App() {
